@@ -14,6 +14,8 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require './lib/rack/slack/event'
+require './lib/rack/slack/auth'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -33,5 +35,10 @@ module IssuerBot
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.autoload_paths += %W(#{config.root}/lib)
+
+
+    config.middleware.use Rack::Slack::Event, endpoint: '/slack/event-endpoint'
+    config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/slack/event-endpoint' unless ENV['RAILS_ENV'] == "test"
   end
 end

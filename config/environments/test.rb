@@ -47,3 +47,5 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 end
+ENV['SLACK_API_TOKEN'] = nil
+ENV['GITHUB_TOKEN'] = nil

@@ -20,6 +20,22 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+staging:
+  adapter: mysql2
+  host: <%= ENV['MYSQL_HOST'] %>
+  database: staging-issuer-bot
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  encoding: latin1
+  reconnect: true
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
+
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  host: <%= ENV['MYSQL_HOST'] %>
+  database: issuer-bot
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  encoding: latin1
+  reconnect: true
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
