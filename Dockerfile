@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.6.6
 
 RUN apt-get update -qq && apt-get install -y build-essential
 
@@ -22,6 +22,6 @@ COPY lib lib
 COPY app app
 COPY --chown=nobody:nogroup config config
 COPY REVISION      REVISION
-RUN mkdir log tmp
+RUN mkdir -p log tmp/pids
 ENTRYPOINT ["bundle", "exec"]
 CMD ["puma"]

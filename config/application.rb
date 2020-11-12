@@ -37,8 +37,7 @@ module IssuerBot
     config.api_only = true
     config.autoload_paths += %W(#{config.root}/lib)
 
-
-    config.middleware.use Rack::Slack::Event, endpoint: '/slack/event-endpoint'
-    config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/slack/event-endpoint' unless ENV['RAILS_ENV'] == "test"
+    config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/events' unless ENV['RAILS_ENV'] == "test"
+    config.middleware.use Rack::Slack::Event, endpoint: '/events'
   end
 end

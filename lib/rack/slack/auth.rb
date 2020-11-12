@@ -13,8 +13,7 @@ module Rack
       def call(env)
 
         request = Rack::Request.new(env)
-
-        unless path_match?(request)
+        if !path_match?(request) || request.env['slack.event.type'] == :url_verification
           return @app.call(env)
         end
 
@@ -34,6 +33,7 @@ module Rack
         slack_signature = request.env["HTTP_X_SLACK_SIGNATURE"]
 
         if computed_signature == slack_signature
+          request.body.rewind
           return @app.call(env)
         end
 

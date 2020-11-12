@@ -9,6 +9,6 @@ class CreateChannels < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :channel_react, [:slack_channel_id, :reaction_id], unique: true
+    add_index :channels, [:slack_channel_id, :reaction_id], unique: true
   end
 end

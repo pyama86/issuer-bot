@@ -19,7 +19,6 @@ module Rack
       def annotate(env)
         request = Rack::Request.new(env)
         payload = JSON.parse(request.body.read)
-
         if payload['type'] == 'event_callback'
           env['slack.event.type'] = payload['event']['type'].to_sym
         else
