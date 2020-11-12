@@ -23,7 +23,7 @@ class GithubIssueService
 
   def channel_name
     client = Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
-    client.channels_info(channel: event.item.channel).channel.name
+    client.conversations_info(channel: event.item.channel).channel.name
   end
 
   def body(message)
