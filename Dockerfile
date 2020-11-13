@@ -23,5 +23,4 @@ COPY app app
 COPY --chown=nobody:nogroup config config
 COPY REVISION      REVISION
 RUN mkdir -p log tmp/pids
-ENTRYPOINT ["bundle", "exec"]
-CMD ["puma"]
+CMD ["sh", "-c", "bundle exec rake db:migrate && bundle exec puma"]

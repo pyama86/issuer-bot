@@ -55,10 +55,7 @@ class ReactionsController < ApplicationController
     ).first
 
     if c
-      service = GithubIssueService.new(event: event)
-      issue   = service.create_issue!(c.org_repo, c.labels)
-      text    = "%s にissueを作成しました。" % issue.html_url
-      client.chat_postMessage(text: text, channel: event.item.channel)
+      CreateIssuerJob.perform_later(c, event)
     end
     render json: { ok: true }, status: 200
   end
