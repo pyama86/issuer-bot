@@ -162,6 +162,8 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
+    sentry-raven (3.1.1)
+      faraday (>= 1.0)
     sidekiq (6.1.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -212,6 +214,7 @@ DEPENDENCIES
   recursive-open-struct
   redis
   redis-rails
+  sentry-raven
   sidekiq
   slack-ruby-client
   spring
