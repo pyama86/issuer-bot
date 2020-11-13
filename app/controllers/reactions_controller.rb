@@ -60,6 +60,7 @@ class ReactionsController < ApplicationController
       text    = "%s にissueを作成しました。" % issue.html_url
       client.chat_postMessage(text: text, channel: event.item.channel)
     end
+    render json: { ok: true }, status: 200
   end
 
   def challenge
