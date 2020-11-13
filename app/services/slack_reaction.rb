@@ -14,18 +14,5 @@ class SlackReaction
       )
       result.messages.first
     end
-
-    def parse_reaction_message(message)
-      if message["attachments"].nil? || message["attachments"].size.zero?
-        {
-          agent: nil,
-          text: message.text,
-        }
-      else
-        {
-          text: message["attachments"].first["text"],
-        }
-      end
-    end
   end
 end
