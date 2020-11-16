@@ -16,13 +16,14 @@ class GithubIssueService
   end
 
   def create_issue!(repo, labels)
+    Rails.logger.info event.inspect
     message = SlackReaction.find_reacted_message(event)
     title  = "%s からの対応依頼(%s)" % [user_name, channel_name]
     octkit.create_issue(repo, title, body(message), labels: labels)
   end
 
   def user_name
-    slack.users_info(user: event.item_user).user.name
+    slack.users_info(user: event.item_user || event.user).user.name
   end
 
   def channel_name
@@ -58,6 +59,7 @@ class GithubIssueService
   end
 
   def body(message)
+    Rails.logger.info message.inspect
     txt = message[:text]
     txt.gsub!(/<!subteam\^[A-Z0-9]{9}\|(@.*?)>/, "\\1")
     ids = txt.scan(/<@[A-Z0-9]{9}>/)
