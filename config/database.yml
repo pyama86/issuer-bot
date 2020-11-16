@@ -26,7 +26,7 @@ staging:
   database: staging-issuer-bot
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
-  encoding: latin1
+  encoding: utf8mb4
   reconnect: true
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
 
@@ -36,6 +36,6 @@ production:
   database: issuer-bot
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
-  encoding: latin1
+  encoding: utf8mb4
   reconnect: true
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
