@@ -61,7 +61,7 @@ class GithubIssueService
 
   def body(message)
     Rails.logger.info message.inspect
-    txt = if message["attachments"].nil? || message["attachments"].size.zero?
+    txt = if message["attachments"].nil? || message["attachments"].size.zero? || !message["attachments"].first["service_name"].empty?
         message["text"]
       else
         message["attachments"].first["text"]
