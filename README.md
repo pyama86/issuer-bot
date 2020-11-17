@@ -2,6 +2,12 @@
 
 this is GitHub Issuer Create bot for Slack.
 
+## Endpoint
+- /register
+- /deregister
+- /list
+
+
 ## Using Slack API
 - chat.postMessage
 - conversations.info
