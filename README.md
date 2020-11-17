@@ -23,7 +23,7 @@ this is GitHub Issuer Create bot for Slack.
 3. Set Values to manifests
 4. Apply manifests
 ```
-$ kubectl -f manifests
+$ kubectl apply -f manifests
 ```
 
 ## Author
