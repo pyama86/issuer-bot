@@ -1,24 +1,24 @@
-# README
+# Issuer-bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+this is GitHub Issuer Create bot for Slack.
 
-Things you may want to cover:
+## Using Slack API
+- chat.postMessage
+- conversations.info
+- conversations.history
+- conversations.replies
+- users.info
+- users.list
+- groups.list
 
-* Ruby version
+## Install
+1. Create GitHub Personal Access Token.
+2. Create Slack Application.
+3. Set Values to manifests
+4. Apply manifests
+```
+$ kubectl -f manifests
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Author
+- pyama86
