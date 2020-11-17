@@ -142,7 +142,7 @@ http_interactions:
   recorded_at: Thu, 12 Nov 2020 04:48:40 GMT
 - request:
     method: post
-    uri: https://git.pepabo.com/api/v3/repos/org/repo/issues
+    uri: https://api.github.com/repos/org/repo/issues
     body:
       encoding: UTF-8
       string: '{"labels":["label","hoge"],"title":"対応依頼(EXAMPLE)","body":"## メッセージ\nHere''s
