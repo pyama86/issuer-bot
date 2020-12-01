@@ -66,7 +66,7 @@ class GithubIssueService
               (!message["attachments"].first["service_name"].nil? && message["attachments"].first["service_name"].empty?)
         message["text"]
       else
-        message["attachments"].first["text"].empty? ? message["attachments"].first["title"] : message["attachments"].first["text"]
+        message["attachments"].first["text"].nil? || message["attachments"].first["text"].empty? ? message["attachments"].first["title"] : message["attachments"].first["text"]
       end
 
     txt.gsub!(/<!subteam\^[A-Z0-9]{9}\|(@.*?)>/, "\\1")
