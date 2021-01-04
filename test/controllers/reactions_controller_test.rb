@@ -3,7 +3,7 @@ require 'test_helper'
 class ReactionsControllerTest < ActionDispatch::IntegrationTest
   test "#added" do
     VCR.use_cassette 'slack/reaction_add' do
-      post slack_event_endpoint_url, params: {
+      post events_url, params: {
         type: "reaction_added",
         event: {
           reaction: 'example',
