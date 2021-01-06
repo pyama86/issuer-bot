@@ -2,34 +2,25 @@ class GithubIssueService
   include ActiveModel::Model
   attr_accessor :event
 
-  def octkit
-    @_o ||= Octokit::Client.new(
-      access_token: ENV['GITHUB_TOKEN'],
-      auto_paginate: true,
-      api_endpoint: ENV['GITHUB_API'] || "https://api.github.com",
-      web_endpoint: ENV['GITHUB_WEB'] || "https://github.com"
-    )
+  def web_endpoint
+    ENV['GITHUB_WEB'] || "https://github.com"
   end
 
   def slack
     @_client ||= Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
   end
 
-  def create_issue!(repo, labels)
+  def issue_url(repo, labels)
     Rails.logger.info event.inspect
     message = SlackReaction.find_reacted_message(event)
     Rails.logger.info message.inspect
-    title  = "%s からの対応依頼(%s)" % [user_name, channel_name]
-    octkit.create_issue(repo, title, body(message), labels: labels)
+    "#{web_endpoint}/%s/issues/new?body=%s&labels=%s" % [
+      repo,
+      body(message).to_query,
+      labels.to_query,
+    ]
   end
 
-  def user_name
-    slack.users_info(user: event.item_user || event.user).user.name
-  end
-
-  def channel_name
-    slack.conversations_info(channel: event.item.channel).channel.name
-  end
 
   def members
     Rails.cache.fetch("slack_members", expires_in: 60.minutes) do
