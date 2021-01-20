@@ -14,10 +14,14 @@ class GithubIssueService
     Rails.logger.info event.inspect
     message = SlackReaction.find_reacted_message(event)
     Rails.logger.info message.inspect
-    "#{web_endpoint}/%s/issues/new?body=%s&labels=%s" % [
+    param = {
+      body: body(message),
+      labels: labels
+    }
+
+    "#{web_endpoint}/%s/issues/new?%s" % [
       repo,
-      body(message).to_query,
-      labels.to_query,
+      param.to_query
     ]
   end
 
