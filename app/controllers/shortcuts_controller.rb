@@ -8,7 +8,7 @@ class ShortcutsController < ApplicationController
           org_repos = Rails.cache.fetch("org_repos", expires_in: 60.minutes) do
             amonthago = Time.now - 86400 * 30
             octokit.organizations.map do |o|
-              octokit.organization_repositories(o[:login]).select do |repo|
+              octokit.organization_repositories(o[:login], sort: 'updated', direction: 'desc').select do |repo|
                 amonthago < repo.updated_at
               end
             end.flatten.compact
@@ -24,21 +24,17 @@ class ShortcutsController < ApplicationController
 
           org_hash.each do |org,repos|
             st.option_group(label: org) do |og|
-              repos.each do |r|
+              repos.each_with_index do |r,index|
                 i = payload['actions'].first['selected_option']['value'] == r rescue false
-                og.option(value: r, text: r, emoji: true, initial: i)
+                og.option(value: r, text: r, emoji: true, initial: i) if index < 100
               end
             end
-
-            cnt += 1
-            break if cnt > 5
           end
         end
       end
 
       case payload['type']
       when 'message_action'
-        message = payload['message']
         b.divider
         b.header(text: "Metadata")
         b.section do |s|
@@ -47,6 +43,10 @@ class ShortcutsController < ApplicationController
         b.section do |s|
           s.mrkdwn(text: "channel:#{payload['channel']['id']}")
         end
+        b.section do |s|
+          s.mrkdwn(text: "message:#{GithubIssueService.parse_message(payload['message'])}")
+        end
+
       when 'block_actions'
         case payload['actions'].first['action_id']
         when'choice_repo'
@@ -57,17 +57,15 @@ class ShortcutsController < ApplicationController
             }
           })
           service = GithubIssueService.new(event: event)
-          issue = service.issue_url(payload['actions'].first['selected_option']['value'], [])
+          issue = service.issue_url(payload['actions'].first['selected_option']['value'], [], {'text' => get_metadata('message')})
 
           b.section do |s|
             b.header(text: "Metadata")
-            b.section do |s|
-              s.mrkdwn(text: "ts:#{get_metadata('ts')}")
+            %w(ts channel message).each do |n|
+              b.section do |s|
+                s.mrkdwn(text: "#{n}:#{get_metadata(n)}")
+              end
             end
-            b.section do |s|
-              s.mrkdwn(text: "channel:#{get_metadata('channel')}")
-            end
-
             b.divider
             s.plain_text(text: 'Click and open browser')
             s.button(text: 'OpenLink',

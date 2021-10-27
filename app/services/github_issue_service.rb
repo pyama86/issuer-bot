@@ -10,9 +10,9 @@ class GithubIssueService
     @_client ||= Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
   end
 
-  def issue_url(repo, labels)
+  def issue_url(repo, labels, message=nil)
     Rails.logger.info event.inspect
-    message = SlackReaction.find_reacted_message(event)
+    message = SlackReaction.find_reacted_message(event) unless message
     Rails.logger.info message.inspect
     param = {
       body: body(message),
@@ -54,7 +54,7 @@ class GithubIssueService
     end
   end
 
-  def body(message)
+  def self.parse_message(message)
     Rails.logger.info message.inspect
     txt = if message["attachments"].nil? ||
               message["attachments"].size.zero? ||
@@ -71,10 +71,14 @@ class GithubIssueService
       target = members.find{|m| m["id"] == id } || groups.find{|m| m["id"] == id}
       txt.gsub!(/<@#{id}>/, "@#{target["name"]}") if target
     end
+    txt
+  end
+
+  def body(message)
 
     <<EOS
 ## メッセージ
-#{txt}
+#{GithubIssueService.parse_message(message)}
 ## 参考情報
 - [Slackリンク](#{slack_link})
 EOS

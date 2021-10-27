@@ -9,7 +9,7 @@ class OrgRepoCacheJob < ApplicationJob
     )
     amonthago = Time.now - 86400 * 30
     r = octokit.organizations.map do |o|
-          octokit.organization_repositories(o[:login]).select do |repo|
+          octokit.organization_repositories(o[:login], sort: 'updated', direction: 'desc').select do |repo|
           amonthago < repo.updated_at
         end
     end.flatten.compact
