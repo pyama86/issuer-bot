@@ -71,7 +71,7 @@ class ShortcutsController < ApplicationController
       client.views_open(trigger_id: payload['trigger_id'], view: modal.to_json.to_s )
     end
 
-    render :created
+    render status: 200, text: ""
   end
 
   def payload

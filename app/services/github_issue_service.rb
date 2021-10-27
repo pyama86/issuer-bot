@@ -6,7 +6,7 @@ class GithubIssueService
     ENV['GITHUB_WEB'] || "https://github.com"
   end
 
-  def slack
+  def self.slack
     @_client ||= Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
   end
 
