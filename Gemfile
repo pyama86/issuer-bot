@@ -48,3 +48,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'octokit'
 gem 'slack-ruby-client'
 gem 'slack-ruby-block-kit'
+
+
+gem 'elastic-apm'
