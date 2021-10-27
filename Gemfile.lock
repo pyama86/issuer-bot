@@ -186,6 +186,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    slack-ruby-block-kit (0.17.0)
     slack-ruby-client (0.17.0)
       faraday (>= 1.0)
       faraday_middleware
@@ -234,6 +235,7 @@ DEPENDENCIES
   redis-rails
   sentry-raven
   sidekiq
+  slack-ruby-block-kit
   slack-ruby-client
   spring
   spring-watcher-listen (~> 2.0.0)

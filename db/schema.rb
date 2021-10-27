@@ -13,12 +13,13 @@
 ActiveRecord::Schema.define(version: 2020_11_12_020619) do
 
   create_table "channels", force: :cascade do |t|
-    t.string "slack_channel_id"
-    t.string "reaction_id"
-    t.string "org_repo"
+    t.string "slack_channel_id", null: false
+    t.string "reaction_id", null: false
+    t.string "org_repo", null: false
     t.string "labels"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slack_channel_id", "reaction_id"], name: "index_channels_on_slack_channel_id_and_reaction_id", unique: true
   end
 
 end
