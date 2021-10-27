@@ -66,12 +66,12 @@ class ShortcutsController < ApplicationController
 
     modal = Slack::BlockKit.modal(title: "Create Issue", blocks: blocks)
     if payload['type'] == 'block_actions'
-      client.views_update(trigger_id: payload['trigger_id'], view: modal.to_json.to_s, view_id: payload['view']['id'])
+      client.views_update(trigger_id: payload['trigger_id'], view: modal.to_json, view_id: payload['view']['id'])
     else
-      client.views_open(trigger_id: payload['trigger_id'], view: modal.to_json.to_s )
+      client.views_open(trigger_id: payload['trigger_id'], view: modal.to_json )
     end
 
-    render status: 200, text: ""
+    render status: 200, json: ""
   end
 
   def payload
