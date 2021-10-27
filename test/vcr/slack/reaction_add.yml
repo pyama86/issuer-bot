@@ -1,0 +1,265 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://slack.com/api/conversations.history
+    body:
+      encoding: UTF-8
+      string: channel=EXAMPLE&inclusive=true&latest=1598587862.219000&limit=1&oldest=1598587862.219000&token
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.15.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Nov 2020 04:45:07 GMT
+      Server:
+      - Apache
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - 0d223711af5448180948f2847a5c0459
+      X-Accepted-Oauth-Scopes:
+      - conversations:history
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '53'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-10h4,haproxy-edge-nrt-yf40
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "ok": true,
+            "channel": "EXAMPLE",
+            "ts": "1503435956.000247",
+            "messages": [{
+                "text": "Here's a message for you",
+                "username": "ecto1",
+                "bot_id": "B19LU7CSY",
+                "attachments": [
+                    {
+                        "text": "This is an attachment",
+                        "id": 1,
+                        "fallback": "This is an attachment's fallback"
+                    }
+                ],
+                "type": "message",
+                "subtype": "bot_message",
+                "ts": "1503435956.000247"
+            }]
+        }
+  recorded_at: Thu, 12 Nov 2020 04:45:07 GMT
+- request:
+    method: post
+    uri: https://slack.com/api/channels.info
+    body:
+      encoding: UTF-8
+      string: channel=EXAMPLE&token
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.15.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Nov 2020 04:48:40 GMT
+      Server:
+      - Apache
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - 332f59076a374bffcab991e10ace6e0e
+      X-Accepted-Oauth-Scopes:
+      - channels:read
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '53'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-6e9b,haproxy-edge-nrt-7car
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "ok": true,
+            "channel": {
+              "name": "EXAMPLE"
+            }
+        }
+  recorded_at: Thu, 12 Nov 2020 04:48:40 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/org/repo/issues
+    body:
+      encoding: UTF-8
+      string: '{"labels":["label","hoge"],"title":"対応依頼(EXAMPLE)","body":"## メッセージ\nHere''s
+        a message for you\n## 参考情報\n- [Slackリンク](https://slack.com/archives/EXAMPLE/p1598587862219000)\n"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.19.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token dommy
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 12 Nov 2020 04:57:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '96'
+      Connection:
+      - keep-alive
+      Status:
+      - 200
+      X-Github-Enterprise-Version:
+      - 2.22.3
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - ff304aa8-daf2-4e36-9e96-b32ed09837ba
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Runtime-Rack:
+      - '0.016276'
+    body:
+      encoding: UTF-8
+      string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/enterprise/2.22/rest"}'
+  recorded_at: Thu, 12 Nov 2020 04:57:21 GMT
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: channel=EXAMPLE&text=+%E3%81%ABissue%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82&token
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Slack Ruby Client/0.15.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Nov 2020 04:58:33 GMT
+      Server:
+      - Apache
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - 3b7c225e90b1c5129410ec5f9779b9b3
+      X-Accepted-Oauth-Scopes:
+      - chat:write:bot
+      Referrer-Policy:
+      - no-referrer
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '53'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-cv6x,haproxy-edge-nrt-7yox
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true ,"error":"not_authed"}'
+  recorded_at: Thu, 12 Nov 2020 04:58:33 GMT
+recorded_with: VCR 6.0.0
