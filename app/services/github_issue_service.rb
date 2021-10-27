@@ -26,7 +26,7 @@ class GithubIssueService
   end
 
 
-  def members
+  def self.members
     Rails.cache.fetch("slack_members", expires_in: 60.minutes) do
       members = []
       next_cursor = nil
@@ -40,7 +40,7 @@ class GithubIssueService
     end
   end
 
-  def groups
+  def self.groups
     Rails.cache.fetch("slack_groups", expires_in: 60.minutes) do
       groups = []
       next_cursor = nil
