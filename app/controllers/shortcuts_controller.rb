@@ -5,21 +5,8 @@ class ShortcutsController < ApplicationController
       b.section do |s|
         s.plain_text(text: 'Chose Repository')
         s.static_select(placeholder: 'repo/org', action_id: "choice_repo", emoji: true) do |st|
-          org_repos = Rails.cache.fetch("org_repos", expires_in: 60.minutes) do
-            amonthago = Time.now - 86400 * 30
-            octokit.organizations.map do |o|
-              octokit.organization_repositories(o[:login], sort: 'updated', direction: 'desc').select do |repo|
-                amonthago < repo.updated_at
-              end
-            end.flatten.compact
-          end
-
-          cnt = 0
-
-          org_hash = org_repos.each_with_object({}) do |o,r|
-            ora =  o[:full_name].split('/')
-            r[ora[0]] ||= []
-            r[ora[0]]  << o[:full_name]
+          org_hash = Rails.cache.fetch("org_repos", expires_in: 60.minutes) do
+            GithubRepos.often_use_repos
           end
 
           org_hash.each do |org,repos|
