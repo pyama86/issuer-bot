@@ -30,10 +30,7 @@ class ShortcutsController < ApplicationController
         b.section do |s|
           s.mrkdwn(text: "channel:#{payload['channel']['id']}")
         end
-        b.section do |s|
-          s.mrkdwn(text: "message:#{GithubIssueService.parse_message(payload['message'])}")
-        end
-
+        Rails.cache.write(payload['message']['ts'], GithubIssueService.parse_message(payload['message']), expires_in: 10.minutes)
       when 'block_actions'
         case payload['actions'].first['action_id']
         when'choice_repo'
@@ -43,12 +40,15 @@ class ShortcutsController < ApplicationController
               ts: get_metadata('ts'),
             }
           })
+
           service = GithubIssueService.new(event: event)
-          issue = service.issue_url(payload['actions'].first['selected_option']['value'], [], {'text' => get_metadata('message')})
+          issue = service.issue_url(payload['actions'].first['selected_option']['value'],
+                                    [],
+                                    {'text' => Rails.cache.fetch(get_metadata('ts'), expires_in: 10.minutes) })
 
           b.section do |s|
             b.header(text: "Metadata")
-            %w(ts channel message).each do |n|
+            %w(ts channel).each do |n|
               b.section do |s|
                 s.mrkdwn(text: "#{n}:#{get_metadata(n)}")
               end
@@ -57,7 +57,7 @@ class ShortcutsController < ApplicationController
             s.plain_text(text: 'Click and open browser')
             s.button(text: 'OpenLink',
                      action_id: "submit",
-                     url: issue,
+                     url: issue.slice(0, 3000),
                      value: "create", emoji: true)
           end
         end
