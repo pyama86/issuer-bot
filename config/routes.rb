@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'deregister', to: 'reactions#deregister'
   post 'list', to: 'reactions#list'
   post 'shortcuts', to: 'shortcuts#create'
+  post 'options', to: 'shortcuts#options'
 
   constraints Constraint::SlackEvent.new(:reaction_added) do
     post 'events', to: 'reactions#added'

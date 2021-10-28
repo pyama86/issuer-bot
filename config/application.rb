@@ -38,6 +38,8 @@ module IssuerBot
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/events' unless ENV['RAILS_ENV'] == "test"
+    config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/shortcuts' unless ENV['RAILS_ENV'] == "test"
+    config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/options' unless ENV['RAILS_ENV'] == "test"
     config.middleware.use Rack::Slack::Event, endpoint: '/events'
     config.active_job.queue_adapter = :sidekiq
     config.cache_store = :redis_store, "#{ENV.fetch('REDIS_URL', 'redis://localhost:6379')}/0/cache"

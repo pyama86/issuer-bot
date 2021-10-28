@@ -5,6 +5,7 @@ class CreateIssuerJob < ApplicationJob
   end
 
   def perform(channel, event)
+    channel = RecursiveOpenStruct.new(channel) if channel.is_a?(Hash)
     event = RecursiveOpenStruct.new(event)
     service = GithubIssueService.new(event: event)
     issue   = service.issue_url(channel.org_repo, channel.labels)
