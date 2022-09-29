@@ -11,7 +11,6 @@ RUN gem install bundler -N
 RUN bundle config set without 'development test'
 RUN bundle config set deployment 'true'a
 
-RUN cp -R ~/.bundle .
 RUN bundle install -j4
 
 COPY bin bin
