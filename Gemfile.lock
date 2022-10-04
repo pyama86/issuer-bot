@@ -232,7 +232,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.5.0)
+    sqlite3 (1.5.1)
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
     tzinfo (2.0.5)
@@ -271,7 +271,7 @@ DEPENDENCIES
   slack-ruby-client
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
+  sqlite3 (~> 1.5)
   tzinfo-data
   vcr
   webmock
