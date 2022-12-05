@@ -14,10 +14,10 @@ class GithubRepos
   def self.often_use_repos
     amonthago = Time.now - 86_400 * 30
     octokit.organizations.map do |o|
-      octokit.organization_repositories(o[:login], sort: 'updated', direction: 'desc').select do |repo|
-        amonthago < repo.updated_at
+      octokit.organization_repositories(o[:login]).select do |repo|
+        amonthago < repo.pushed_at
       end
-    end.flatten.compact.sort_by!(&:updated_at).reverse.each_with_object({}) do |o, r|
+    end.flatten.compact.sort_by!(&:pushed_at).reverse.each_with_object({}) do |o, r|
       ora = o[:full_name].split('/')
       r[ora[0]] ||= []
       r[ora[0]] << o[:full_name]
