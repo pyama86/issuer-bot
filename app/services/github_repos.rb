@@ -17,7 +17,7 @@ class GithubRepos
       octokit.organization_repositories(o[:login], sort: 'updated', direction: 'desc').select do |repo|
         amonthago < repo.updated_at
       end
-    end.flatten.compact.sort_by! { |_a| r.updated_at }.reverse.each_with_object({}) do |o, r|
+    end.flatten.compact.sort_by!(&:updated_at).reverse.each_with_object({}) do |o, r|
       ora = o[:full_name].split('/')
       r[ora[0]] ||= []
       r[ora[0]] << o[:full_name]
