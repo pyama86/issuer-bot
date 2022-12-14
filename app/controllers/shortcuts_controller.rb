@@ -5,16 +5,21 @@ class ShortcutsController < ApplicationController
     org_hash = Rails.cache.fetch('org_repos', expires_in: 60.minutes) do
       GithubRepos.often_use_repos
     end
+    v = begin
+      payload['value']
+        rescue StandardError
+          nil
+    end
 
-    ogs = org_hash.map do |org, repos|
+    ogs = []
+    if v
+      ogs << Slack::BlockKit::Composition::OptionGroup.new(label: 'input') do |og|
+        og.option(value: v, text: v, emoji: true)
+      end
+    end
+
+    result = org_hash.map do |org, repos|
       Slack::BlockKit::Composition::OptionGroup.new(label: org) do |og|
-        v = begin
-          payload['value']
-            rescue StandardError
-              nil
-        end
-        og.option(value: v, text: v, emoji: true) if v && v =~ /^#{org}/
-
         repos.each_with_index do |r, _index|
           next if payload['type'] == 'block_suggestion' && r !~ /#{payload['value']}/
 
@@ -24,6 +29,8 @@ class ShortcutsController < ApplicationController
     end.reject do |og|
       og.options.empty?
     end
+
+    ogs.concat(result)
     render json: { option_groups: ogs.map(&:as_json) }.to_json
   end
 
