@@ -8,13 +8,13 @@ class ShortcutsController < ApplicationController
 
     ogs = org_hash.map do |org, repos|
       Slack::BlockKit::Composition::OptionGroup.new(label: org) do |og|
-        if og.options.empty? && v = begin
-                                      payload['value']
-                                    rescue StandardError
-                                      nil
-                                    end
-          og.option(value: v, text: v, emoji: true)
+        v = begin
+          payload['value']
+            rescue StandardError
+              nil
         end
+        og.option(value: v, text: v, emoji: true) if v && v =~ /^#{org}/
+
         repos.each_with_index do |r, _index|
           next if payload['type'] == 'block_suggestion' && r !~ /#{payload['value']}/
 
