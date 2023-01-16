@@ -80,9 +80,10 @@ GEM
     date (3.3.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    elastic-apm (4.5.1)
+    elastic-apm (4.6.0)
       concurrent-ruby (~> 1.0)
       http (>= 3.0)
+      ruby2_keywords
     erubi (1.11.0)
     faraday (2.7.1)
       faraday-net_http (>= 2.0, < 3.1)
@@ -102,7 +103,7 @@ GEM
       activesupport (>= 5.0)
     hashdiff (1.0.1)
     hashie (5.0.0)
-    http (5.1.0)
+    http (5.1.1)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
@@ -112,7 +113,7 @@ GEM
     http-form_data (2.3.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    listen (3.7.1)
+    listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     llhttp-ffi (0.4.0)
@@ -129,7 +130,7 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
+    mini_portile2 (2.8.1)
     minitest (5.16.3)
     msgpack (1.6.0)
     multipart-post (2.2.3)
@@ -150,11 +151,11 @@ GEM
     octokit (4.25.1)
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
-    public_suffix (5.0.0)
-    puma (6.0.0)
+    public_suffix (5.0.1)
+    puma (6.0.2)
       nio4r (~> 2.0)
     racc (1.6.1)
-    rack (2.2.4)
+    rack (2.2.5)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4)
@@ -196,7 +197,7 @@ GEM
     redis-activesupport (5.3.0)
       activesupport (>= 3, < 8)
       redis-store (>= 1.3, < 2)
-    redis-client (0.11.2)
+    redis-client (0.12.0)
       connection_pool
     redis-rack (2.1.4)
       rack (>= 2.0.8, < 3)
@@ -214,7 +215,7 @@ GEM
       faraday (>= 0.17.3, < 3)
     sentry-raven (3.1.2)
       faraday (>= 1.0)
-    sidekiq (7.0.2)
+    sidekiq (7.0.3)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -232,7 +233,18 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
+<<<<<<< HEAD
     sqlite3 (1.5.4)
+=======
+    sprockets (4.1.1)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
+    sqlite3 (1.6.0)
+>>>>>>> 858dc0201340e3bc95d6cdcc1b2259b4237de08f
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
     timeout (0.3.1)
@@ -258,7 +270,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   elastic-apm
-  listen (~> 3.2)
+  listen (~> 3.8)
   mysql2
   octokit
   puma
@@ -272,7 +284,7 @@ DEPENDENCIES
   slack-ruby-client
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.5)
+  sqlite3 (~> 1.6)
   tzinfo-data
   vcr
   webmock
