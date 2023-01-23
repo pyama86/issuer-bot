@@ -1,6 +1,6 @@
 FROM ruby:3.1.3
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt upgrade -qq && apt-get install -y build-essential
 
 WORKDIR /opt/app
 
