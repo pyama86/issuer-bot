@@ -79,7 +79,7 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     erubi (1.12.0)
-    faraday (2.7.2)
+    faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-mashify (0.1.1)
@@ -102,7 +102,7 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -113,7 +113,7 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.17.0)
     msgpack (1.6.0)
-    multipart-post (2.2.3)
+    multipart-post (2.3.0)
     mysql2 (0.5.5)
     net-imap (0.3.4)
       date
@@ -217,7 +217,7 @@ GEM
     sqlite3 (1.6.1)
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
-    timeout (0.3.1)
+    timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     vcr (6.1.0)
@@ -254,6 +254,9 @@ DEPENDENCIES
   tzinfo-data
   vcr
   webmock
+
+RUBY VERSION
+   ruby 3.1.3p185
 
 BUNDLED WITH
    2.4.2
