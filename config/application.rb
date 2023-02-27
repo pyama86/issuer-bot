@@ -42,7 +42,7 @@ module IssuerBot
     config.middleware.use Rack::Slack::Auth, ENV["SLACK_SIGNING_SECRET"], path: '/options' unless ENV['RAILS_ENV'] == "test"
     config.middleware.use Rack::Slack::Event, endpoint: '/events'
     config.active_job.queue_adapter = :sidekiq
-  config.cache_store = :redis_cache_store
+    config.cache_store = :redis_cache_store
     config.active_record.cache_versioning = false 
   enud
 end
