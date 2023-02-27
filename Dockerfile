@@ -1,4 +1,4 @@
-FROM ruby:3.1.3
+FROM rubylang/ruby:3.2-dev-focal
 
 RUN apt-get update -qqy && apt upgrade -qqy && apt-get install -qqy build-essential
 
