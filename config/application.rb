@@ -43,6 +43,6 @@ module IssuerBot
     config.middleware.use Rack::Slack::Event, endpoint: '/events'
     config.active_job.queue_adapter = :sidekiq
     config.cache_store = :redis_cache_store
-    config.active_record.cache_versioning = false 
-  enud
+    config.active_record.cache_versioning = false
+  end
 end
