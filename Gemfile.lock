@@ -203,13 +203,12 @@ GEM
       redis-client (>= 0.11.0)
     slack-ruby-block-kit (0.21.0)
       zeitwerk (~> 2.6)
-    slack-ruby-client (2.0.0)
+    slack-ruby-client (2.1.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
       gli
       hashie
-      websocket-driver
     spring (4.1.1)
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
