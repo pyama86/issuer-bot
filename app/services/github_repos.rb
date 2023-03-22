@@ -7,7 +7,7 @@ class GithubRepos
       api_endpoint: ENV['GITHUB_API'] || 'api.github.com',
       access_token: ENV['GITHUB_TOKEN'],
       auto_paginate: true,
-      per_page: 300
+      per_page: 100
     )
   end
 
