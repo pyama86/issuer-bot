@@ -1,7 +1,7 @@
 FROM rubylang/ruby:3.1-dev-focal
 
-RUN apt-get update -qqy && apt upgrade -qqy && apt-get install -qqy build-essential libmysql++-dev
-
+RUN apt-get update -qqy && apt upgrade -qqy && apt-get install -qqy build-essential libmysql++-dev && \
+ apt-get clean&& rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/app
 
 COPY Gemfile      Gemfile
