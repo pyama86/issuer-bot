@@ -92,16 +92,15 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
-    faraday (2.7.11)
-      base64
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
     faraday-mashify (0.1.1)
       faraday (~> 2.0)
       hashie
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
-    faraday-net_http (3.0.2)
+    faraday-net_http (3.1.0)
+      net-http
     ffi (1.16.3)
     gli (2.21.1)
     globalid (1.2.1)
@@ -133,6 +132,8 @@ GEM
     multipart-post (2.3.0)
     mutex_m (0.2.0)
     mysql2 (0.5.5)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.9.1)
       date
       net-protocol
@@ -235,7 +236,7 @@ GEM
       redis-client (>= 0.19.0)
     slack-ruby-block-kit (0.23.0)
       zeitwerk (~> 2.6)
-    slack-ruby-client (2.2.0)
+    slack-ruby-client (2.3.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
@@ -252,6 +253,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     vcr (6.2.0)
     webmock (3.19.1)
       addressable (>= 2.8.0)
