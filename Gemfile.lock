@@ -195,7 +195,7 @@ GEM
     rdoc (6.7.0)
       psych (>= 4.0.0)
     recursive-open-struct (1.2.2)
-    redis (5.2.0)
+    redis (5.3.0)
       redis-client (>= 0.22.0)
     redis-actionpack (5.3.0)
       actionpack (>= 5, < 8)
