@@ -8,7 +8,7 @@ gem 'redis-rails'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'rails'
-gem 'sqlite3', '~> 2.4'
+gem 'sqlite3', '~> 2.5'
 gem 'puma'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'listen', '~> 3.9'
